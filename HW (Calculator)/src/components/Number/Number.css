@@ -1,0 +1,13 @@
+.number {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #D4D4D2;
+    color: #FF9500;
+    font-size: 45px;
+    font-weight: 700;
+    border: 2px solid white;
+}
+.number:last-child {
+    margin-left: 88px;
+}
