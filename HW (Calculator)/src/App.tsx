@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import Number from "./components/Number/Number.tsx"
 import Result from "./components/Result/Result.tsx"
-
 import './App.css'
+import './fonts.css'
 import Operation from './components/Operation/Operation.tsx';
 const numbers: string[] = [];
 let myExp: string[] = [];
@@ -13,6 +13,14 @@ const generateNums = () => {
   numbers.push("0");
 }
 const doCalc = (arr: string[]): string => {
+  if(arr.length < 3 ||
+    arr.some((number, index) => isNaN(+number) && !["X", "/", "+", "-"].includes(number) ||
+    number === "/" && arr[index + 1] === "0" ||
+    ["X", "/", "+", "-"].includes(number) && isNaN(+arr[index + 1]) ) 
+    ) {
+    return "Invalied Expresion"
+  }
+
   try{
     while(arr.includes("X") || arr.includes("/")) {
       const opIndex = arr.includes("X")? arr.indexOf("X") :  arr.indexOf("/");
@@ -30,11 +38,11 @@ const doCalc = (arr: string[]): string => {
       arr.splice((opIndex - 1), 3, (+arr[opIndex - 1] + +arr[opIndex + 1]).toString())
       : arr.splice((opIndex - 1), 3, (+arr[opIndex - 1] - +arr[opIndex + 1]).toString());
     }
-  }catch{
-    arr[0] = "Invalied Expresion";
   }
-
-
+  catch (error){
+    return "Error..!";
+  }
+  
   return arr[0];
 }
 generateNums();
@@ -47,8 +55,17 @@ function App() {
   const addNumber = (value: string) => {
       setExpresion(expresion.concat(value));
       if(myExp.length > 0) {
-        if(!isNaN(parseInt(myExp[myExp.length - 1])) || myExp[myExp.length - 1].endsWith(".")) {
-          myExp[myExp.length - 1] = myExp[myExp.length - 1].concat(value);
+        const lastIndex: number = myExp.length -1
+        if(
+            !isNaN(parseInt(myExp[lastIndex])) ||
+            myExp[lastIndex].endsWith(".") ||
+            ["+", "-"].includes(myExp[lastIndex]) && ["+", "-"].includes(myExp[lastIndex - 1])
+          ) {
+          myExp[lastIndex] = myExp[lastIndex].concat(value);
+        }
+
+        else if(myExp.length == 1 && ["+", "-"].includes(myExp[0])) {
+          myExp[0] = myExp[0].concat(value);
         }
         else {
           myExp.push(value);
@@ -58,6 +75,7 @@ function App() {
         myExp.push(value);
       }
   }
+
   const addOperation = (operation: string) => {
     if(operation === "AC") {
       setExpresion("")
@@ -75,7 +93,7 @@ function App() {
       if(expresion.length > 0) {
         setExpresion(expresion.concat("="))
         const result: string = doCalc(myExp);
-        !isNaN(parseInt(result)) ? setResult(result) : setExpresion("Invalied Expresion");
+        !isNaN(+result) ? setResult(result) : setExpresion(result); 
         myExp = [];
       }
     }
@@ -85,17 +103,21 @@ function App() {
         setResult("");
       }
       else {
-        const expToArr = expresion.split("");
-        expToArr.pop();
-        myExp.pop()
-        expToArr.join("");
-        setExpresion(expToArr.join(""));
+        setExpresion(expresion.slice(0, -1));
       }
     }
 
-    else {
-      setExpresion(expresion.concat(operation))
-      myExp.push(operation);
+    else if(["+", "-", "*", "/"].includes(operation)) {
+      if(result !== "") {
+        myExp.push(result);
+        myExp.push(operation);
+        setExpresion(result.concat(operation))
+        setResult(""); 
+      }
+      else {
+        setExpresion(expresion.concat(operation))
+        myExp.push(operation);
+      }
     }
   }
   return (
