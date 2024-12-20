@@ -12,6 +12,8 @@ const generateNums = () => {
   }
   numbers.push("0");
 }
+const operationsArray:string[] = ["del", "AC", "-", "+", "X", "/", ".", "="]
+
 const doCalc = (arr: string[]): string => {
   if(arr.length < 3 ||
     arr.some((number, index) => isNaN(+number) && !["X", "/", "+", "-"].includes(number) ||
@@ -146,14 +148,15 @@ function App() {
           }
           </div> 
           <div className="operations">
-            <Operation operation={"del"} addToExp={addOperation}/>
-            <Operation operation={"AC"} addToExp={addOperation}/>
-            <Operation operation={"-"} addToExp={addOperation}/>
-            <Operation operation={"+"} addToExp={addOperation}/>
-            <Operation operation={"X"} addToExp={addOperation}/>
-            <Operation operation={"/"} addToExp={addOperation}/>
-            <Operation operation={"."} addToExp={addOperation}/>
-            <Operation operation={"="} addToExp={addOperation}/>
+          {
+            operationsArray.map((op) => (
+              <Operation
+                operation = {op}
+                key={op}
+                addToExp={addOperation}
+              />
+            ))
+          }
           </div>
       </div>
     </>
