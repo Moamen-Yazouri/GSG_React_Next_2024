@@ -53,26 +53,36 @@ function App() {
   const [result, setResult] = useState<string>("");
 
   const addNumber = (value: string) => {
-      setExpresion(expresion.concat(value));
-      if(myExp.length > 0) {
-        const lastIndex: number = myExp.length -1
-        if(
-            !isNaN(parseInt(myExp[lastIndex])) ||
-            myExp[lastIndex].endsWith(".") ||
-            ["+", "-"].includes(myExp[lastIndex]) && ["+", "-"].includes(myExp[lastIndex - 1])
-          ) {
-          myExp[lastIndex] = myExp[lastIndex].concat(value);
-        }
+      // setExpresion(expresion.concat(value));
+      if(result) {
+        setExpresion(value);
+        myExp = [value];
+        setResult("")
+      }
 
-        else if(myExp.length == 1 && ["+", "-"].includes(myExp[0])) {
-          myExp[0] = myExp[0].concat(value);
+      else {
+        setExpresion(expresion.concat(value));
+
+        if(myExp.length > 0) {
+          const lastIndex: number = myExp.length -1
+          if(
+              !isNaN(parseInt(myExp[lastIndex])) ||
+              myExp[lastIndex].endsWith(".") ||
+              ["+", "-"].includes(myExp[lastIndex]) && ["+", "-"].includes(myExp[lastIndex - 1])
+            ) {
+            myExp[lastIndex] = myExp[lastIndex].concat(value);
+          }
+          else if(myExp.length == 1 && ["+", "-"].includes(myExp[0])) {
+            myExp[0] = myExp[0].concat(value);
+          }
+          else {
+            myExp.push(value);
+          }
         }
+        
         else {
           myExp.push(value);
         }
-      }
-      else {
-        myExp.push(value);
       }
   }
 
