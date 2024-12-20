@@ -107,7 +107,7 @@ function App() {
       }
     }
 
-    else if(["+", "-", "*", "/"].includes(operation)) {
+    else if(["+", "-", "X", "/"].includes(operation)) {
       if(result !== "") {
         myExp.push(result);
         myExp.push(operation);
