@@ -1,3 +1,4 @@
+import './Tasks-Data.css';
 interface IProps {
     created: number;
     aurgent: number;
@@ -8,7 +9,7 @@ const TasksData = (props: IProps) => {
         <div className="data">
             <div>Created Tasks: {props.created}</div>
             <div>Aurgent Tasks: {props.aurgent}</div>
-            <div>Completed Tasks: {props.completed}</div>
+            <div>Completed Tasks: <span>{props.completed}</span></div>
         </div>
     )
 }

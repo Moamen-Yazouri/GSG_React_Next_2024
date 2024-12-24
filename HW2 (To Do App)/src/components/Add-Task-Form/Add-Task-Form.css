@@ -1,0 +1,85 @@
+form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 5px solid #DA8359;
+    background-color: #A5B68D;
+    border-radius: 15px;
+}
+form div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form label {
+    color: #213555;
+    margin-right: 5px;
+    font-size: 15px;
+    font-weight: 700;
+}
+form .content label {
+    font-size: 12px;
+}
+form input[type="text"] {
+    padding: 5px 10px;
+    width: 300px;
+}
+form input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFFDEC;
+    border: 2px solid #DA8359;
+    cursor: pointer;
+    transition: 0.1s;
+    position: relative;
+}
+form input[type="checkbox"]::before {
+    content: "✔";
+    position: absolute;
+    top: 45%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    display: none;
+    transition: 0.2s;
+}
+form input[type="checkbox"]:checked {
+    background-color: #FF2929;
+    border-color: #FFFDEC;
+}
+form input[type="checkbox"]:checked::before {
+    display: block;
+    color: #FFFDEC;
+}
+form .buttons  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+form .buttons button[type="reset"] {
+    background-color: #FF2929;
+}
+form button {
+    padding: 8px;
+    background-color: #47663B;
+    color: #F8FAFC;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 1px 3px 1px #4B5945;
+    cursor: pointer;
+}
+form button:hover {
+    box-shadow: 0px 0px 0px 1px #4B5945;
+}

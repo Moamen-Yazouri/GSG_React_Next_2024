@@ -1,0 +1,8 @@
+.data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.data div {
+    background-color: #FFE6A9;
+}
