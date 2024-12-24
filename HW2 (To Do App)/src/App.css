@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
+  max-width: 600px;
   margin: 0 auto;
   text-align: center;
   background-color: #FCFAEE;
+  border: 3px solid #777;
+  min-height: 100vh;
 }
 .to-do-app {
   padding-top: 50px;

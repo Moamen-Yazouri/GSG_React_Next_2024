@@ -13,9 +13,11 @@ const AddTask = (props: IProps) => {
         const taskContent: string = e.currentTarget["taskContent"].value;
         const taskAurgent: boolean = e.currentTarget["taskAurgent"].checked;
         const newTask: ITask = {...task, content: taskContent, isAurgent: taskAurgent, isDone: false, id: Date.now()}
-        setTask(newTask);
-        props.passTask(newTask);
-        e.currentTarget.reset();
+        if(taskContent) {
+            setTask(newTask);
+            props.passTask(newTask);
+            e.currentTarget.reset();
+        }
     }
     return (
         <form onSubmit={handleSubmit}>

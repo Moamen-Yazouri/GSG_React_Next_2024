@@ -1,22 +1,27 @@
 import "./Tasks.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useState } from "react";
 interface IProps {
-    handleDone: (done: boolean) => void;
+    handlDoneChange: (change: number) => void;
     taskContent: string;
     isAurgent: boolean;
     taskId: number;
-    completed: boolean;
     onDelete: (id: number, aurgent: boolean) => void
 }   
 const Task = (props: IProps) => {
+    const [done, setDone] = useState(false)
     const handleDelete = () => {
         props.onDelete(props.taskId, props.isAurgent);
     }
+    const handleDone = (isDone: boolean) => {
+        setDone(isDone);
+        isDone ? props.handlDoneChange(+1) : props.handlDoneChange(-1); 
+    }
     return (
             <div className="task">
-                <input type="checkbox" onChange={e => props.handleDone(e.target.checked)} />
-                <div className={props.completed ? "content done" : "content"}>{props.taskContent}</div>
+                <input type="checkbox" onChange={e => handleDone(e.target.checked)} />
+                <div className={done ? "content done" : "content"}>{props.taskContent}</div>
                 {props.isAurgent && <div className="urgent">Urgent</div>}
                 <button className="delete">
                     <FontAwesomeIcon

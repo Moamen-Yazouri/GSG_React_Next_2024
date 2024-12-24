@@ -13,7 +13,6 @@ function App() {
   const [completed, setCompleted] = useState(0);
   const [aurgents, setAurgent] = useState(0);
   const [tasksList, setTasksList] = useState<ITask[]>([]);
-  const [isDone, setDone] = useState(false);
   const receiveNewTask = (newTask: ITask) => {
     setCreated(created + 1)
     if(newTask.isAurgent) {
@@ -24,16 +23,9 @@ function App() {
       setTasksList([...tasksList, newTask])
     } 
   }
-  const handleDone = (done: boolean) => {
-        if(done) {
-          setDone(true);
-          setCompleted(completed + 1)
-        }
-        else {
-          setDone(false);
-          setCompleted(completed - 1)
-        }
-      }
+  const changeCompleted = (change: number) => {
+      setCompleted(completed + change);
+    }
     const deleteTask = (id: number, isAurgent: boolean) => {
       const newList = tasksList.filter(item => !(item.id == id));
       setTasksList(newList);
@@ -52,13 +44,12 @@ function App() {
         {
           tasksList.map(task => (
               <Task
-              completed = {isDone}
               taskContent={task.content}
               isAurgent={task.isAurgent} 
-              handleDone={handleDone} 
               key={task.id} 
               taskId={task.id}
               onDelete={deleteTask}
+              handlDoneChange={changeCompleted}
               />
             )
           )
