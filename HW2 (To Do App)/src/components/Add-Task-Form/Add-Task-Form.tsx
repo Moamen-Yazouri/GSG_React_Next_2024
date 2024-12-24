@@ -20,7 +20,7 @@ const AddTask = (props: IProps) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="content">
-                <label htmlFor="taskContent">Tak Name: </label>
+                <label htmlFor="taskContent">Task Name: </label>
                 <input type="text" placeholder="Task Name" id="taskContent"/>
             </div>
             <div className="aurgent">

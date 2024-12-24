@@ -18,17 +18,29 @@ form div {
     justify-content: center;
 }
 form label {
-    color: #213555;
+    color: #C84C05;
     margin-right: 5px;
     font-size: 15px;
     font-weight: 700;
 }
-form .content label {
-    font-size: 12px;
-}
 form input[type="text"] {
     padding: 5px 10px;
-    width: 300px;
+    width: 250px;
+    border: none;
+    background-color: FDF7F4;
+    transition: 0.3s;
+}
+form input[type="text"]:focus {
+    caret-color: #A5B68D;
+    border: none;
+    outline: none;
+}
+form input[type="text"]::placeholder {
+    color: #C84C05;
+    transition: 0.3s;
+}
+form input[type="text"]:focus::placeholder {
+    opacity: 0;
 }
 form input[type="checkbox"] {
     appearance: none;
@@ -44,7 +56,7 @@ form input[type="checkbox"] {
 form input[type="checkbox"]::before {
     content: "✔";
     position: absolute;
-    top: 45%;
+    top: 53%;
     left: 48%;
     transform: translate(-50%, -50%);
     font-size: 12px;

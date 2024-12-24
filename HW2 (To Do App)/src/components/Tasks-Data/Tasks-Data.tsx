@@ -7,8 +7,8 @@ interface IProps {
 const TasksData = (props: IProps) => {
     return (
         <div className="data">
-            <div>Created Tasks: {props.created}</div>
-            <div>Aurgent Tasks: {props.aurgent}</div>
+            <div>Created Tasks: <span>{props.created}</span></div>
+            <div>Aurgent Tasks: <span>{props.aurgent}</span></div>
             <div>Completed Tasks: <span>{props.completed}</span></div>
         </div>
     )
