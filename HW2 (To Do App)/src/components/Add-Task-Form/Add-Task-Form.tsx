@@ -7,7 +7,7 @@ interface IProps {
 const AddTask = (props: IProps) => {
     const INTIAL_TASK: ITask = {content: "", isAurgent: false, isDone: false, id: 0};
     const [task, setTask] = useState<ITask>(INTIAL_TASK);
-
+    const [empty, setEmpty] = useState<string>("");
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const taskContent: string = e.currentTarget["taskContent"].value;
@@ -17,6 +17,10 @@ const AddTask = (props: IProps) => {
             setTask(newTask);
             props.passTask(newTask);
             e.currentTarget.reset();
+            setEmpty("");
+        }
+        else {
+            setEmpty("please Enter Task's content!");
         }
     }
     return (
@@ -25,6 +29,11 @@ const AddTask = (props: IProps) => {
                 <label htmlFor="taskContent">Task Name: </label>
                 <input type="text" placeholder="Task Name" id="taskContent"/>
             </div>
+            {
+                    Boolean(empty) && (
+                        <p className="errors">{empty}</p>
+                    )
+                }
             <div className="aurgent">
                 <label htmlFor="taskAurgent">Is Aurgent: </label>
                 <input type="checkbox"  id="taskAurgent"/>

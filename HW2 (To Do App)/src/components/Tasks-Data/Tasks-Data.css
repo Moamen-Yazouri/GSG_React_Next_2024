@@ -5,16 +5,16 @@
     align-items: center;
 }
 .data div {
-    background-color: #8DECB4;
+    border: 5px solid #3E5879;
+    background-color: #7FA1C3;
     display: flex;
     flex-direction: column;
     padding: 20px 15px;
-    box-shadow: 1px 1px 3px 1px #9AC8CD;
-    border: 2px solid white;
+    box-shadow: 2px 3px 0px 1px #7FA1C3;
     border-radius: 5px;
 }
 .data div span {
     font-size: 20px;
     margin-top: 10px;
-    color: #FB4141;
+    color: #F5EDED;
 }

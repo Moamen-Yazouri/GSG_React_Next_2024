@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 interface IProps {
-    handlDoneChange: (change: number) => void;
+    handlDoneChange: (change: number, id: number, done: boolean) => void;
     taskContent: string;
     isAurgent: boolean;
     taskId: number;
@@ -16,11 +16,11 @@ const Task = (props: IProps) => {
     }
     const handleDone = (isDone: boolean) => {
         setDone(isDone);
-        isDone ? props.handlDoneChange(+1) : props.handlDoneChange(-1); 
+        isDone ? props.handlDoneChange(+1, props.taskId, isDone) : props.handlDoneChange(-1, props.taskId, isDone); 
     }
     return (
             <div className="task">
-                <input type="checkbox" onChange={e => handleDone(e.target.checked)} />
+                <input type="checkbox"  onChange={e => handleDone(e.target.checked)} />
                 <div className={done ? "content done" : "content"}>{props.taskContent}</div>
                 {props.isAurgent && <div className="urgent">Urgent</div>}
                 <button className="delete">

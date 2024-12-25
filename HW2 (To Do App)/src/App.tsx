@@ -6,7 +6,8 @@ import TasksData from './components/Tasks-Data/Tasks-Data';
 import Task from './components/Task/Task';
 import returnMonthName from './utilities/Monthes';
 const date = new Date();
-const day = date.getDay();
+const localeFormattedDate: string = date.toLocaleDateString('en-US');
+const day = localeFormattedDate.split("/")[1];
 const month: string = returnMonthName(date.getMonth());
 function App() {
   const [created, setCreated] = useState(0);
@@ -23,8 +24,11 @@ function App() {
       setTasksList([...tasksList, newTask])
     } 
   }
-  const changeCompleted = (change: number) => {
+  const changeCompleted = (change: number, id: number, done: boolean) => {
+
       setCompleted(completed + change);
+      const newList: ITask[] = tasksList.map(item => item.id == id ? {...item, isDone: done} : item);
+      setTasksList(newList)
     }
     const deleteTask = (id: number, isAurgent: boolean) => {
       const newList = tasksList.filter(item => !(item.id == id));

@@ -8,8 +8,8 @@ form {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    border: 5px solid #DA8359;
-    background-color: #A5B68D;
+    border: 5px solid #6482AD;
+    background-color: #7FA1C3;
     border-radius: 15px;
 }
 form div {
@@ -18,7 +18,7 @@ form div {
     justify-content: center;
 }
 form label {
-    color: #C84C05;
+    color: #000000;
     margin-right: 5px;
     font-size: 15px;
     font-weight: 700;
@@ -27,7 +27,7 @@ form input[type="text"] {
     padding: 5px 10px;
     width: 250px;
     border: none;
-    background-color: FDF7F4;
+    background-color: #FDF7F4;
     transition: 0.3s;
 }
 form input[type="text"]:focus {
@@ -36,7 +36,7 @@ form input[type="text"]:focus {
     outline: none;
 }
 form input[type="text"]::placeholder {
-    color: #C84C05;
+    color: #6482AD;
     transition: 0.3s;
 }
 form input[type="text"]:focus::placeholder {
@@ -65,7 +65,7 @@ form input[type="checkbox"]::before {
     transition: 0.2s;
 }
 form input[type="checkbox"]:checked {
-    background-color: #FF2929;
+    background-color: #6482AD;
     border-color: #FFFDEC;
 }
 form input[type="checkbox"]:checked::before {
@@ -79,12 +79,13 @@ form .buttons  {
     gap: 10px;
 }
 form .buttons button[type="reset"] {
-    background-color: #FF2929;
+    background-color: #213555;
+    color: #ffff;
 }
 form button {
     padding: 8px;
-    background-color: #47663B;
-    color: #F8FAFC;
+    background-color: #074799;
+    color: #E2DAD6;
     font-size: 15px;
     font-weight: 700;
     border: none;
@@ -94,4 +95,12 @@ form button {
 }
 form button:hover {
     box-shadow: 0px 0px 0px 1px #4B5945;
+}
+form .errors {
+    display: block;
+    color: #FF2929;
+    margin-top: 0px;
+    margin-bottom: 0 !important;
+    font-size: 14px;
+    font-weight: 300;
 }
