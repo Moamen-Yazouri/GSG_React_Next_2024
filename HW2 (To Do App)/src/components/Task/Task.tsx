@@ -3,25 +3,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from "react";
 interface IProps {
-    handlDoneChange: (change: number, id: number, done: boolean) => void;
+    handlDoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     taskContent: string;
     isAurgent: boolean;
     taskId: number;
-    onDelete: (id: number, aurgent: boolean) => void
+    isDone: boolean;
+    onDelete: (id: number) => void
 }   
 const Task = (props: IProps) => {
-    const [done, setDone] = useState(false)
     const handleDelete = () => {
-        props.onDelete(props.taskId, props.isAurgent);
+        props.onDelete(props.taskId);
     }
-    const handleDone = (isDone: boolean) => {
-        setDone(isDone);
-        isDone ? props.handlDoneChange(+1, props.taskId, isDone) : props.handlDoneChange(-1, props.taskId, isDone); 
-    }
+    // const handleDone = (isDone: boolean) => {
+    //     setDone(isDone);
+    //     isDone ? props.handlDoneChange(+1, props.taskId, isDone) : props.handlDoneChange(-1, props.taskId, isDone); 
+    // }
     return (
             <div className="task">
-                <input type="checkbox"  onChange={e => handleDone(e.target.checked)} />
-                <div className={done ? "content done" : "content"}>{props.taskContent}</div>
+                <input type="checkbox"  onChange={props.handlDoneChange} data-id={props.taskId}/>
+                <div className={props.isDone ? "content done" : "content"}>{props.taskContent}</div>
                 {props.isAurgent && <div className="urgent">Urgent</div>}
                 <button className="delete">
                     <FontAwesomeIcon

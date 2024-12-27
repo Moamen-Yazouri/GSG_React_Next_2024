@@ -1,15 +1,17 @@
+import { ITask } from '../../types/task';
 import './Tasks-Data.css';
 interface IProps {
-    created: number;
-    aurgent: number;
-    completed: number;
+    tasks: ITask[];
 }
 const TasksData = (props: IProps) => {
+    const completed = props.tasks.filter(task => task.isDone).length;
+    const urgents = props.tasks.filter(task => task.isUrgent).length;
+    const allTasks = props.tasks.length;
     return (
         <div className="data">
-            <div>Created Tasks: <span>{props.created}</span></div>
-            <div>Aurgent Tasks: <span>{props.aurgent}</span></div>
-            <div>Completed Tasks: <span>{props.completed}</span></div>
+            <div>Created Tasks: <span>{allTasks}</span></div>
+            <div>Aurgent Tasks: <span>{urgents}</span></div>
+            <div>Completed Tasks: <span>{completed}</span></div>
         </div>
     )
 }

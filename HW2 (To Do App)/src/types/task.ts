@@ -1,6 +1,6 @@
 export interface ITask {
     content: string,
-    isAurgent: boolean,
+    isUrgent: boolean,
     isDone: boolean
     id: number;
 }

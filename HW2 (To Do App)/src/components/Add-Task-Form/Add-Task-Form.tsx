@@ -5,22 +5,19 @@ interface IProps {
     passTask: (task: ITask) => void
 }
 const AddTask = (props: IProps) => {
-    const INTIAL_TASK: ITask = {content: "", isAurgent: false, isDone: false, id: 0};
-    const [task, setTask] = useState<ITask>(INTIAL_TASK);
-    const [empty, setEmpty] = useState<string>("");
+    const [error, setError] = useState<string>("");
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const taskContent: string = e.currentTarget["taskContent"].value;
         const taskAurgent: boolean = e.currentTarget["taskAurgent"].checked;
-        const newTask: ITask = {...task, content: taskContent, isAurgent: taskAurgent, isDone: false, id: Date.now()}
+        const newTask: ITask = {content: taskContent, isUrgent: taskAurgent, isDone: false, id: Date.now()}
         if(taskContent) {
-            setTask(newTask);
             props.passTask(newTask);
             e.currentTarget.reset();
-            setEmpty("");
+            setError("");
         }
         else {
-            setEmpty("please Enter Task's content!");
+            setError("please Enter Task's content!");
         }
     }
     return (
@@ -30,10 +27,10 @@ const AddTask = (props: IProps) => {
                 <input type="text" placeholder="Task Name" id="taskContent"/>
             </div>
             {
-                    Boolean(empty) && (
-                        <p className="errors">{empty}</p>
-                    )
-                }
+                Boolean(error) && (
+                    <p className="errors">{error}</p>
+                )
+            }
             <div className="aurgent">
                 <label htmlFor="taskAurgent">Is Aurgent: </label>
                 <input type="checkbox"  id="taskAurgent"/>

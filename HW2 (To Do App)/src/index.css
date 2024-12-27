@@ -3,4 +3,5 @@
 body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
+    background: linear-gradient(60deg, #2E5077, #4DA1A9, #79D7BE);
 }
