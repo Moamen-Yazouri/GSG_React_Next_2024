@@ -8,10 +8,10 @@ const AddTask = (props: IProps) => {
     const [error, setError] = useState<string>("");
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const taskContent: string = e.currentTarget["taskContent"].value;
+        const content: string = e.currentTarget["content"].value;
         const taskAurgent: boolean = e.currentTarget["taskAurgent"].checked;
-        const newTask: ITask = {content: taskContent, isUrgent: taskAurgent, isDone: false, id: Date.now()}
-        if(taskContent) {
+        const newTask: ITask = {content: content, isUrgent: taskAurgent, isDone: false, id: Date.now()}
+        if(content) {
             props.passTask(newTask);
             e.currentTarget.reset();
             setError("");
@@ -24,7 +24,7 @@ const AddTask = (props: IProps) => {
         <form onSubmit={handleSubmit}>
             <div className="content">
                 <label htmlFor="taskContent">Task Name: </label>
-                <input type="text" placeholder="Task Name" id="taskContent"/>
+                <input type="text" placeholder="Task Name" id="content"/>
             </div>
             {
                 Boolean(error) && (
