@@ -1,13 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import AddTask from './components/Add-Task-Form/Add-Task-Form'
 import { ITask } from './types/task'
 import TasksData from './components/Tasks-Data/Tasks-Data';
 import Task from './components/Task/Task';
 import returnDate from './utilities/Date';
+import useLocalStorage from './hooks/useLocalStorage';
 const date: string = returnDate();
 function App() {
   const [tasksList, setTasksList] = useState<ITask[]>([]);
+  const {storedData} = useLocalStorage(tasksList, "tasks-list");
+
+  useEffect(() => {
+    const newTasks = storedData || [];
+    setTasksList(newTasks)
+  }, [storedData])
   const receiveNewTask = (newTask: ITask) => {
     if(newTask.isUrgent) {
       setTasksList([newTask, ...tasksList]);
