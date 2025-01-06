@@ -25,7 +25,7 @@ const AddForm = (props: IProps) => {
   }
 
   const handleSubmit = () => {
-    const newStudent: IStudent = { ...student, id: Date.now().toString() };
+    const newStudent: IStudent = { ...student};
 
     const errors = validateStudent(newStudent);
     if (errors.length > 0) {

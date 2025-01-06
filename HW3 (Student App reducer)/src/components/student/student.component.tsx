@@ -4,7 +4,7 @@ import CoursesList from '../courses-list/courses-list.component';
 import './student.css';
 
 interface IProps extends IStudent {
-  onAbsentChange: (id: string, change: number) => void;
+  onAbsentChange: (changeObj: {id: string, change: number}) => void;
 }
 
 const Student = (props: IProps) => {
@@ -43,21 +43,21 @@ const Student = (props: IProps) => {
   const addAbsent = () => {
     prevAbsents.current = absents;
     setAbsents(absents + 1);
-    props.onAbsentChange(props.id, +1);
+    props.onAbsentChange({id: props.id, change: +1});
   }
 
   const removeAbsent = () => {
     if (absents - 1 >= 0) {
       prevAbsents.current = absents;
       setAbsents(absents - 1);
-      props.onAbsentChange(props.id, -1);
+      props.onAbsentChange({id: props.id, change: -1});
     }
   }
 
   const resetAbsent = () => {
     prevAbsents.current = absents;
     setAbsents(0);
-    props.onAbsentChange(props.id, -absents);
+    props.onAbsentChange({id: props.id, change: -absents});
   }
 
   return (
