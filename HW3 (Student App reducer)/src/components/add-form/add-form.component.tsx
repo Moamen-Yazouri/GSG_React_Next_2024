@@ -23,7 +23,10 @@ const AddForm = (props: IProps) => {
   const handleChange = (field: string, value: any) => {
     setStudent({ ...student, [field]: value });
   }
-
+  
+  const handleClear = () => {
+    setStudent(INITIAL_STUDENT);
+  }
   const handleSubmit = () => {
     const newStudent: IStudent = { ...student};
 
@@ -37,9 +40,6 @@ const AddForm = (props: IProps) => {
     }
   }
 
-  const handleClear = () => {
-    setStudent(INITIAL_STUDENT);
-  }
 
   const handleCoursesChange = (list: string[]) => {
     setStudent({ ...student, coursesList: list });

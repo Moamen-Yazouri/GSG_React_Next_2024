@@ -30,3 +30,16 @@ body {
 .main.wrapper {
   border-left: 8px solid #DA498D;
 }
+nav  {
+  display: flex;
+  align-items: center;
+  border-top: 2px solid #DA498D;
+  border-bottom: 2px solid #DA498D;
+  gap: 20px;
+}
+nav a {
+  background-color: #ffffffcc;
+  padding: 10px;
+
+}
+
