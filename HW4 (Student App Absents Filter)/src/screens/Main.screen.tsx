@@ -71,7 +71,7 @@ const Main = (props: IProps) => {
 
   const filterAbsentsMax = (e: React.ChangeEvent<HTMLInputElement>) => {
     const max = e.target.value;
-    if(Number(max) == 20) {
+    if(Number(max) == 0) {
       params.delete("maxAbs");
   }
   else {
@@ -126,18 +126,18 @@ const Main = (props: IProps) => {
                   name=""
                   id="min"
                   min={0} 
-                  max={5} 
+                  max={20} 
                   step={1} 
                   onChange={filterAbsentsMin} 
                   />
               </div>
               <div className="max">
-              <label htmlFor="max">To: <span>{Number(params.get('maxAbs')) || 20}</span></label>
+              <label htmlFor="max">To: <span>{Number(params.get('maxAbs')) || 0}</span></label>
               <input 
-              value={Number(params.get('maxAbs')) || 20}
+              value={Number(params.get('maxAbs')) || 0}
               type="range"  
               id="max" 
-              min={5} 
+              min={0} 
               max={20} 
               step={1} 
               onChange={filterAbsentsMax} 
