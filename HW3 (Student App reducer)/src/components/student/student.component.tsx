@@ -32,12 +32,8 @@ const Student = (props: IProps) => {
   useEffect(() => {
     console.log("Hello from Student component!");
 
-    // The code in this function will be called on the unmount
     return () => {
       console.log(`Student ${props.name}, has been deleted! `);
-      // if (confirm("Do you want to back up the item before deletion!")) {
-      //   localStorage.setItem('back-up', JSON.stringify(props));
-      // }
     };
   }, []);
 

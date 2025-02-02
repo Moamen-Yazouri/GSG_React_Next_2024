@@ -10,7 +10,7 @@ const StudentDetails = () => {
     const {id} = useParams();
     const stdArr =localStorage.getItem('students-list');
     const [state, dispatch] = useReducer(reducer, {stdList: stdArr ? JSON.parse(stdArr) : [], totalAbs: 0});
-    const { storedData } = useLocalStorage(state.stdList, 'students-list');
+
     useEffect(() => {
         if(state.stdList.length > 0) {
             const std = state.stdList.find(student => student.id === id);
@@ -18,7 +18,7 @@ const StudentDetails = () => {
                 setCurrStd(std)
             }
         }
-    }, [id]);
+    }, [id, state.stdList]);
 
     return (
         <div style={{minHeight: "50vh", display: "flex", alignItems: 'center'}}>

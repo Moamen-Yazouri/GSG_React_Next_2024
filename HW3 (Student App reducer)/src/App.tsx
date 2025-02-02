@@ -1,11 +1,4 @@
-import {useEffect, useRef, useReducer} from 'react';
 import './App.css'
-import { IStudent } from './types';
-
-import Student from './components/student/student.component';
-import AddForm from './components/add-form/add-form.component';
-import useLocalStorage from './hooks/local-storage.hook';
-import reducer from './stateManager/reducer';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Main from './screens/main.screens';
 import About from './screens/about.screens';
