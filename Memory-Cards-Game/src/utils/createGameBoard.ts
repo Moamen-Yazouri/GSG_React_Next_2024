@@ -6,7 +6,7 @@ const creatGameBoard = (level: Elevels): ICard[] => {
         solved: false,
         visible: false, 
         id: index % 2 == 0 ? index + 1 : index, 
-        image: `../assets/p1.png`}))
+        image: `https://api.clipart.com/img/previews/education-${index}.jpg`}))
     .sort(() => Math.random() - 0.5);
     return cards;
 }

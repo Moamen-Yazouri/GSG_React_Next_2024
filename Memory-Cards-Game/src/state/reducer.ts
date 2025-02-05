@@ -4,28 +4,29 @@ import createGameBoard from "../utils/createGameBoard";
 export interface IState {
     cards: ICard[];
     moves: number;
-    openCards: ICard[];
+    openCards: number[];
 }
 
 export type Action = 
     {type: "INIT", payload: {level: Elevels}} |
-    {type: "FLIP_CARD", payload: {id: number, index: number}} |
-    {type: "HIDE_MISMATCHES", payload: {level: Elevels}};
+    {type: "FLIP_CARD", payload: {index: number}} |
+    {type: "HIDE_MISMATCHES"};
 
 export const reducer = (state: IState, action: Action): IState => {
     switch(action.type) {
         case "INIT" : {
             return {...state, cards: createGameBoard(action.payload.level)} ;
         }
+
         case "FLIP_CARD" : {
-            if(state.openCards.includes(state.cards[action.payload.index])) {
+            if(state.openCards.includes(action.payload.index)) {
                 return state;
             }
-            let openCards = [...state.openCards, state.cards.find((_, index) => index == action.payload.index)!];
+            let openCards = [...state.openCards, action.payload.index];
             let cards: ICard[] = [...state.cards]; 
             if(openCards.length == 2) {
-                cards = state.cards.map((c) => c.id == openCards[1].id ? {...c, visible: true} : c );
-                if(openCards[0].id == openCards[1].id) {
+                cards[openCards[1]].visible = true;
+                if(cards[openCards[0]].id == cards[openCards[1]].id) {
                     openCards = [];
                 }
             }
@@ -34,15 +35,13 @@ export const reducer = (state: IState, action: Action): IState => {
             }
             return{...state, cards, openCards}
         }
-        case "HIDE_MISMATCHES": {
-            if(state.openCards[0].id !== state.openCards[1].id) {
-                setTimeout(() => {
-                    
-                    return {
-                        ...state,
-                        cards: state.cards.map((c) => c.id == state.openCards[0].id || state.openCards[1].id ? {...c, visible: false} : c)
-                    };
-                }, 2000)
+
+        case "HIDE_MISMATCHES" : {
+            if(state.cards[state.openCards[0]]?.id !== state.cards[state.openCards[1]]?.id) {
+                const cards: ICard[] = [...state.cards];
+                cards[state.openCards[0]].visible = false;
+                cards[state.openCards[1]].visible = false;
+                return{...state, cards, openCards: []};
             }
             else {
                 return state;
