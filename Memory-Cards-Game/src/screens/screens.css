@@ -7,3 +7,26 @@
     margin: 0 auto;
     color: black;
 }
+.levels-screen {
+    font-family: 'Courier New', Courier, monospace;
+}
+.levels-screen .levels {
+    display: flex;
+    width: 60vmin;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    margin: 0 auto;
+}
+.levels-screen .levels .level {
+    display: flex;
+    flex-basis: 33%;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    background-color: rgb(191, 191, 191);
+    cursor: pointer;
+}
+.levels-screen .levels .level:hover {
+    border: 3px solid gray;
+}

@@ -7,4 +7,5 @@ export interface ICard {
     image: string,
     id: number,
     visible: boolean,
+    revealed: boolean,
 }

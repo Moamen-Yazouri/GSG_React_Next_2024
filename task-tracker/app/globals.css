@@ -1,0 +1,22 @@
+@import "tailwindcss";
+.main-heading::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 4px;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+}
+.main-heading::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+}

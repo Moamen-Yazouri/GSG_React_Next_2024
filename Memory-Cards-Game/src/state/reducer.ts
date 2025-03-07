@@ -1,23 +1,29 @@
 import { Elevels, ICard } from "../types/@types";
-import createGameBoard from "../utils/createGameBoard";
+import {createGameBoard} from "../utils/game.utils";
 
 export interface IState {
     cards: ICard[];
     moves: number;
     openCards: number[];
+    initialized: boolean;
 }
 
 export type Action = 
     {type: "INIT", payload: {level: Elevels}} |
+    {type: "REPLAY"} |
     {type: "FLIP_CARD", payload: {index: number}} |
     {type: "HIDE_MISMATCHES"};
 
 export const reducer = (state: IState, action: Action): IState => {
     switch(action.type) {
         case "INIT" : {
-            return {...state, cards: createGameBoard(action.payload.level)} ;
+            console.log("INIT");
+            
+            return {...state, cards: createGameBoard(action.payload.level), initialized: true} ;
         }
-
+        case 'REPLAY' : {
+            return {...state, initialized: false};
+        }
         case "FLIP_CARD" : {
             if(state.openCards.includes(action.payload.index)) {
                 return state;
@@ -27,6 +33,8 @@ export const reducer = (state: IState, action: Action): IState => {
             if(openCards.length == 2) {
                 cards[openCards[1]].visible = true;
                 if(cards[openCards[0]].id == cards[openCards[1]].id) {
+                    cards[openCards[0]].revealed = true;
+                    cards[openCards[1]].revealed = true;
                     openCards = [];
                 }
             }
